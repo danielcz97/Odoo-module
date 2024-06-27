@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="index_template" name="Metryczka">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure oe_empty">
+                    <div class="container">
+                        <style>
+                            .header-label { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
+                            .data-value { font-size: 14px; margin-bottom: 10px; }
+                            .records-table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin-bottom: 20px;
+                            }
+                            .records-table th, .records-table td {
+                                border: 1px solid #ccc;
+                                padding: 8px;
+                                text-align: left;
+                            }
+                            .records-table th {
+                                background-color: #f8f8f8;
+                            }
+                            .record-item {
+                                border-bottom: 1px solid #e1e1e1;
+                                padding: 10px 0;
+                            }
+                            .header-h1 { text-align: center; font-size: 28px; margin-top: 20px; margin-bottom: 20px; }
+                        </style>
+                        <form t-attf-action="/my/indeks" method="get">
+                            <input type="text" name="search" t-att-value="request.params.get('search', '')" placeholder="Szukaj..." class="form-control mb-2"/>
+                            <select name="project_id" class="form-control mb-2">
+                                <option value="">Wybierz projekt</option>
+                                <t t-foreach="projects" t-as="project">
+                                    <option t-att-value="project.id" t-att-selected="request.params.get('project_id') == str(project.id)">
+                                        <t t-esc="project.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                            <select name="partner_id" class="form-control mb-2">
+                                <option value="">Wybierz partnera</option>
+                                <t t-foreach="partners" t-as="partner">
+                                    <option t-att-value="partner.id" t-att-selected="request.params.get('partner_id') == str(partner.id)">
+                                        <t t-esc="partner.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                            <select name="user_id" class="form-control mb-2">
+                                <option value="">Wybierz użytkownika</option>
+                                <t t-foreach="users" t-as="user">
+                                    <option t-att-value="user.id" t-att-selected="request.params.get('user_id') == str(user.id)">
+                                        <t t-esc="user.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Filtruj</button>
+                        </form>
+                        <h1 class="header-h1">Metryczka Lista</h1>
+                        <table class="records-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Opis</th>
+                                    <th>Pole 02</th>
+                                    <th>Pole 20</th>
+                                    <th>Akcje</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="records">
+                                    <t t-foreach="records" t-as="rec">
+                                        <tr class="record-item">
+                                            <td>
+                                                <t t-esc="rec.id"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="rec.description"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="rec.pole02"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="rec.pole20"/>
+                                            </td>
+                                            <td>
+                                                <a t-attf-href="/my/indeks/#{rec.id}">Zobacz</a>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-6 header-label">
+                                Imię i nazwisko:
+                                <div class="data-value">
+                                    <t t-esc="user.name"/>
+                                </div>
+                            </div>
+                            <div class="col-6 header-label">
+                                E-mail:
+                                <div class="data-value">
+                                    <t t-esc="user.email"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 header-label">
+                                Numer telefonu:
+                                <div class="data-value">
+                                    <t t-esc="user.phone"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <img t-att-src="'/web/image?model=res.company&amp;field=logo&amp;id=' + str(user.company_id.id)" style="max-width: 100px;"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,95 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="my_module_list_view">
+      <field name="name">my_module.list</field>
+      <field name="model">my_module.my_module</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="external_id"/>
+          <field name="date"/>
+          <field name="number"/>
+          <field name="description"/>
+          <field name="file_name"/>
+          <field name="file_url"/>
+          <field name="user_id" widget="many2one"/>
+          <field name="partner_id" widget="many2one"/>
+          <field name="project_id" widget="many2one"/>
+          <field name="pole01"/>
+          <field name="pole02"/>
+          <field name="pole03"/>
+          <field name="pole04"/>
+          <field name="pole05"/>
+          <field name="pole06"/>
+          <field name="pole07"/>
+          <field name="pole08"/>
+          <field name="pole09"/>
+          <field name="pole10"/>
+          <field name="pole11"/>
+          <field name="pole12"/>
+          <field name="pole13"/>
+          <field name="pole14"/>
+          <field name="pole15"/>
+          <field name="pole16"/>
+          <field name="pole17"/>
+          <field name="pole18"/>
+          <field name="pole19"/>
+          <field name="pole20"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="my_module_form_view">
+      <field name="name">my_module.form</field>
+      <field name="model">my_module.my_module</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="external_id"/>
+              <field name="date"/>
+              <field name="number"/>
+              <field name="description"/>
+              <field name="file" filename="file_name"/>
+              <field name="file_url" widget='url' string="Download File"/>
+              <field name="user_id" widget="many2one" options="{'no_create': True, 'no_open': True}"/>
+              <field name="partner_id" widget="many2one" options="{'no_create': True, 'no_open': True}"/>
+              <field name="project_id" widget="many2one" options="{'no_create': True, 'no_open': True}"/>
+              <field name="pole01"/>
+              <field name="pole02"/>
+              <field name="pole03"/>
+              <field name="pole04"/>
+              <field name="pole05"/>
+              <field name="pole06"/>
+              <field name="pole07"/>
+              <field name="pole08"/>
+              <field name="pole09"/>
+              <field name="pole10"/>
+              <field name="pole11"/>
+              <field name="pole12"/>
+              <field name="pole13"/>
+              <field name="pole14"/>
+              <field name="pole15"/>
+              <field name="pole16"/>
+              <field name="pole17"/>
+              <field name="pole18"/>
+              <field name="pole19"/>
+              <field name="pole20"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Action to open the views -->
+    <record model="ir.actions.act_window" id="action_my_module">
+      <field name="name">My Module</field>
+      <field name="res_model">my_module.my_module</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem name="My Module" id="my_module_menu_root"/>
+    <menuitem name="My Records" id="my_module_menu_records" parent="my_module_menu_root" action="action_my_module"/>
+
+  </data>
+</odoo>

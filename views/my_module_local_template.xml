@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="local_template" name="Local Template">
+            <t t-call="website.layout">
+                <div id="wrap" class="container">
+                    <h1 class="text-center my-4">Projekty użytkownika</h1>
+                    <t t-foreach="records" t-as="rec">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <strong>Nazwa projektu:</strong>
+                                    <t t-esc="rec.name"/>
+                                </h5>
+                                <p class="card-text">
+                                    <strong>Opis:</strong>
+                                    <t t-esc="rec.description"/>
+                                </p>
+                                <p class="card-text">
+                                    <strong>Planowany start:</strong>
+                                    <t t-esc="rec.date_start" t-options='{"widget": "date"}'/>
+                                </p>
+                                <p class="card-text">
+                                    <strong>Planowane zakończenie:</strong>
+                                    <t t-esc="rec.date" t-options='{"widget": "date"}'/>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                    <div class="text-center mt-5">
+                        <h3>Informacje o użytkowniku</h3>
+                        <p>
+                            <strong>Imię i nazwisko:</strong>
+                            <t t-esc="user.name"/>
+                        </p>
+                        <p>
+                            <strong>E-mail:</strong>
+                            <t t-esc="user.email"/>
+                        </p>
+                        <p>
+                            <strong>Numer telefonu:</strong>
+                            <t t-esc="user.phone"/>
+                        </p>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

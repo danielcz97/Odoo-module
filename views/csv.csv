@@ -1,0 +1,4 @@
+external_id,date,number,description,partner_id,user_id,project_id,file_name,pole00,pole01,pole02
+"123456789012",2024-04-01,"001234","Opis pierwszego rekordu",1,2,3,"file1.pdf",10,20,30
+"123456789013",2024-04-02,"001235","Opis drugiego rekordu",2,3,4,"file2.pdf",15,25,35
+"123456789014",2024-04-03,"001236","Opis trzeciego rekordu",3,4,5,"file3.pdf",20,30,40

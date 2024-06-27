@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <template id="my_files" name="My Files">
+      <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+          <div class="container">
+            <style>
+              .scrollable-table {
+                display: block;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+              }
+            </style>
+            <div class="scrollable-table">
+              <h1>My Files</h1>
+              <t t-if="files">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Number</th>
+                      <th>Description</th>
+                      <th>File</th>
+                      <th t-foreach="range(20)" t-as="num">Pole<t t-esc="num+1"/>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr t-foreach="files" t-as="file">
+                      <td>
+                        <t t-esc="file['date']"/>
+                      </td>
+                      <td>
+                        <t t-esc="file['number'] or 'N/A'"/>
+                      </td>
+                      <td>
+                        <t t-esc="file['description'] or 'N/A'"/>
+                      </td>
+                      <td>
+                        <t t-if="file.get('file_url')">
+                          <a t-att-href="file['file_url']" target="_blank">Download</a>
+                        </t>
+                        <t t-else="">No file available</t>
+                      </td>
+                      <td t-foreach="file['dynamic_fields']" t-as="pole_value">
+                        <t t-esc="pole_value"/>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </t>
+              <t t-else="">
+                <p>You don't have any files uploaded yet.</p>
+              </t>
+            </div>
+          </div>
+        </div>
+      </t>
+    </template>
+  </data>
+</odoo>
